@@ -1,0 +1,2 @@
+* Mon Apr 25 2016 Ryan Parman <ryan.parman@wepay.com> 2.3.1-1
+- Bundles Ruby 2.3.1.
