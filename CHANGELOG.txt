@@ -1,3 +1,6 @@
+* Tue Nov 22 2016 Ryan Parman <ryan@ryanparman.com> 2.3.3-1
+- Bundles Ruby 2.3.3.
+
 * Fri Nov 18 2016 Ryan Parman <ryan@ryanparman.com> 2.3.2-1
 - Bundles Ruby 2.3.2.
 
