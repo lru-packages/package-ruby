@@ -1,14 +1,19 @@
 * Thu Mar 23 2017 Ryan Parman <ryan@ryanparman.com> 2.4.1-1
 - Bundles Ruby 2.4.1.
+- https://github.com/ruby/ruby/compare/v2_4_0...v2_4_1
 
 * Sat Dec 24 2016 Ryan Parman <ryan@ryanparman.com> 2.4.0-1
 - Bundles Ruby 2.4.0.
+- https://github.com/ruby/ruby/compare/v2_3_3...v2_4_0
 
 * Tue Nov 22 2016 Ryan Parman <ryan@ryanparman.com> 2.3.3-1
 - Bundles Ruby 2.3.3.
+- https://github.com/ruby/ruby/compare/v2_3_2...v2_3_3
 
 * Fri Nov 18 2016 Ryan Parman <ryan@ryanparman.com> 2.3.2-1
 - Bundles Ruby 2.3.2.
+- https://github.com/ruby/ruby/compare/v2_3_1...v2_3_2
 
 * Mon Apr 25 2016 Ryan Parman <ryan@ryanparman.com> 2.3.1-1
 - Bundles Ruby 2.3.1.
+- https://github.com/ruby/ruby/compare/v2_3_0...v2_3_1
