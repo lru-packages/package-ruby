@@ -119,6 +119,7 @@ package:
 	fpm \
 		-f \
 		-d "$(NAME)-libs = $(EPOCH):$(VERSION)-$(ITERATION).el$(RHEL)" \
+		-d libyaml \
 		-s dir \
 		-t rpm \
 		-n $(NAME) \
