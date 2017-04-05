@@ -1,7 +1,6 @@
 NAME=ruby
 VERSION=2.4.1
-EPOCH=1
-ITERATION=1
+ITERATION=1.lru
 PREFIX=/usr/local
 LICENSE=BSD
 VENDOR="Ruby Core Team"
@@ -22,7 +21,6 @@ all: info clean install-deps compile install-tmp package move
 info:
 	@ echo "NAME:        $(NAME)"
 	@ echo "VERSION:     $(VERSION)"
-	@ echo "EPOCH:       $(EPOCH)"
 	@ echo "ITERATION:   $(ITERATION)"
 	@ echo "PREFIX:      $(PREFIX)"
 	@ echo "LICENSE:     $(LICENSE)"
@@ -98,7 +96,6 @@ package:
 		-v $(VERSION) \
 		-C /tmp/installdir-$(NAME)-$(VERSION) \
 		-m $(MAINTAINER) \
-		--epoch $(EPOCH) \
 		--iteration $(ITERATION) \
 		--license $(LICENSE) \
 		--vendor $(VENDOR) \
@@ -126,7 +123,6 @@ package:
 		-v $(VERSION) \
 		-C /tmp/installdir-$(NAME)-$(VERSION) \
 		-m $(MAINTAINER) \
-		--epoch $(EPOCH) \
 		--iteration $(ITERATION) \
 		--license $(LICENSE) \
 		--vendor $(VENDOR) \
@@ -153,7 +149,6 @@ package:
 		-v $(VERSION) \
 		-C /tmp/installdir-$(NAME)-$(VERSION) \
 		-m $(MAINTAINER) \
-		--epoch 1 \
 		--iteration $(ITERATION) \
 		--license $(LICENSE) \
 		--vendor $(VENDOR) \
@@ -180,7 +175,6 @@ package:
 		-v $(VERSION) \
 		-C /tmp/installdir-$(NAME)-$(VERSION) \
 		-m $(MAINTAINER) \
-		--epoch 1 \
 		--iteration $(ITERATION) \
 		--license $(LICENSE) \
 		--vendor $(VENDOR) \
