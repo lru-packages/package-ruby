@@ -7,7 +7,9 @@ VENDOR="Ruby Core Team"
 MAINTAINER="Ryan Parman"
 DESCRIPTION="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write."
 URL=https://ruby-lang.org
-RHEL=$(shell rpm -q --queryformat '%{VERSION}' centos-release)
+ACTUALOS=$(shell osqueryi "select * from os_version;" --json | jq -r ".[].name")
+EL=$(shell if [[ "$(ACTUALOS)" == "Amazon Linux AMI" ]]; then echo alami; else echo el; fi)
+RHEL=$(shell [[ -f /etc/centos-release ]] && rpm -q --queryformat '%{VERSION}' centos-release)
 
 COMMIT=$(shell echo "$(VERSION)" | sed -e "s/\./_/g")
 
@@ -28,6 +30,8 @@ info:
 	@ echo "MAINTAINER:  $(MAINTAINER)"
 	@ echo "DESCRIPTION: $(DESCRIPTION)"
 	@ echo "URL:         $(URL)"
+	@ echo "OS:          $(ACTUALOS)"
+	@ echo "EL:          $(EL)"
 	@ echo "RHEL:        $(RHEL)"
 	@ echo "RUBY TAG:    v$(COMMIT)"
 	@ echo " "
@@ -107,7 +111,7 @@ package:
 		--rpm-compression gzip \
 		--rpm-os linux \
 		--rpm-changelog CHANGELOG.txt \
-		--rpm-dist el$(RHEL) \
+		--rpm-dist $(EL)$(RHEL) \
 		--rpm-auto-add-directories \
 		usr/local/lib \
 	;
@@ -115,7 +119,7 @@ package:
 	# Main package
 	fpm \
 		-f \
-		-d "$(NAME)-libs = $(EPOCH):$(VERSION)-$(ITERATION).el$(RHEL)" \
+		-d "$(NAME)-libs = $(VERSION)-$(ITERATION).$(EL)$(RHEL)" \
 		-d libyaml \
 		-s dir \
 		-t rpm \
@@ -134,7 +138,7 @@ package:
 		--rpm-compression gzip \
 		--rpm-os linux \
 		--rpm-changelog CHANGELOG.txt \
-		--rpm-dist el$(RHEL) \
+		--rpm-dist $(EL)$(RHEL) \
 		--rpm-auto-add-directories \
 		usr/local/bin \
 	;
@@ -142,7 +146,7 @@ package:
 	# Development package
 	fpm \
 		-f \
-		-d "$(NAME) = $(EPOCH):$(VERSION)-$(ITERATION).el$(RHEL)" \
+		-d "$(NAME) = $(VERSION)-$(ITERATION).$(EL)$(RHEL)" \
 		-s dir \
 		-t rpm \
 		-n $(NAME)-devel \
@@ -160,7 +164,7 @@ package:
 		--rpm-compression gzip \
 		--rpm-os linux \
 		--rpm-changelog CHANGELOG.txt \
-		--rpm-dist el$(RHEL) \
+		--rpm-dist $(EL)$(RHEL) \
 		--rpm-auto-add-directories \
 		usr/local/include \
 	;
@@ -168,7 +172,7 @@ package:
 	# Documentation package
 	fpm \
 		-f \
-		-d "$(NAME) = $(EPOCH):$(VERSION)-$(ITERATION).el$(RHEL)" \
+		-d "$(NAME) = $(VERSION)-$(ITERATION).$(EL)$(RHEL)" \
 		-s dir \
 		-t rpm \
 		-n $(NAME)-doc \
@@ -186,7 +190,7 @@ package:
 		--rpm-compression gzip \
 		--rpm-os linux \
 		--rpm-changelog CHANGELOG.txt \
-		--rpm-dist el$(RHEL) \
+		--rpm-dist $(EL)$(RHEL) \
 		--rpm-auto-add-directories \
 		usr/local/share \
 	;
@@ -195,4 +199,4 @@ package:
 
 .PHONY: move
 move:
-	mv *.rpm /vagrant/repo/
+	[[ -d /vagrant/repo ]] && mv *.rpm /vagrant/repo/
